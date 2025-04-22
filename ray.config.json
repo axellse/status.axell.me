@@ -1,0 +1,24 @@
+{
+    "Version" : "v1",
+    "Pipeline" : [
+      {
+        "Tool" : "go",
+        "Command" : ["build"],
+        "Type" : "build"
+      }, 
+      {
+        "Tool" : "./status",
+        "Type" : "deploy",
+        "Options" : {
+            "IfAvailable" : true
+        }
+      },
+      {
+        "Tool" : "status.exe",
+        "Type" : "deploy",
+        "Options" : {
+            "IfAvailable" : true
+        }
+      }
+    ]
+  }

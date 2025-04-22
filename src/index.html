@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>status.axell.me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="main.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<script>
+    window.addEventListener('load', () => {
+      const _status = `$${{StatusJson}}`
+      const statusData = JSON.parse(_status)
+  
+      function statusClr(status) {
+        return status ? "aquamarine" : "orange"
+      }
+  
+      document.getElementById('name').innerText = statusData.Name || "status"
+      document.getElementById('main-status').innerText = statusData.EverythingUp ? "all systems operational" : "experiencing issues"
+      document.getElementById('desc').innerText = statusData.Desc || "welcome to my status page! this shows status for trackers, personal projects, websites, etc."
+      document.getElementById('main-status').style.color = statusClr(statusData.EverythingUp)
+      
+      let noCache = 0
+      statusData.Processes.forEach(process => {
+        const statusItem = `            <div class="window about">
+                <div class="window-topbar">
+                    <span class="window-title" id="name">status: ${process.Text}</span> </span><span>- □ ⨯</span>
+                </div>
+
+                <div style="justify-content: start;" class="window-innercontent">
+                    <img style="margin-right: 5px; width: 50px; height: 50px;" class="cat-pic" src="https://power-server.axell.me/dynamic-content/cat-pic?no-cache=${noCache}" alt="">
+                    <div class="window-text">
+                        <p style="font-size: large; margin: 1px;">status: <span style="color: ${statusClr(process.Running)};">${process.Running ? "online" : "offline"}</span></p>
+                        <p style="margin: 1px; margin-bottom: 10px;" id="desc" class="window-text">${process.Subtext}</p>
+                    </div>
+                </div>
+            </div>`
+  
+        document.querySelector('.page-flex-inner').insertAdjacentHTML("beforeend", statusItem)
+        noCache++
+      });
+    })
+  
+  </script>
+<body>
+    <div class="page-flex">
+        <div class="page-flex-inner">         
+            <div class="window about">
+                <div class="window-topbar">
+                    <span class="window-title" id="name">status</span> </span><span>- □ ⨯</span>
+                </div>
+                <p class="window-text" style="font-size: large; margin: 1px;">status: <span id="main-status" style="color: aquamarine;">...</span></p>
+                <p style="margin: 1px; margin-bottom: 10px;" id="desc" class="window-text">...</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="right-bottom-buttons">
+        <a href="https://cd.axell.me/gui/browse-precompiled"><img class="rounded" src="https://cyber.dabamos.de/88x31/88_31freedownloads.gif" alt=""></a>
+        <a href="https://www.7-zip.org/"><img class="rounded" src="https://cyber.dabamos.de/88x31/7zip.gif" alt=""></a>
+    </div>
+</body>
+</html>
