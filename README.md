@@ -1,2 +1,2 @@
 # status.axell.me
-raystatus implementation for my personal projects
+raystatus implementation for my status page
