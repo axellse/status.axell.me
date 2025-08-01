@@ -14,7 +14,7 @@
         }
       },
       {
-        "Tool" : "status.exe",
+        "Tool" : "./status.exe",
         "Type" : "deploy",
         "Options" : {
             "IfAvailable" : true
