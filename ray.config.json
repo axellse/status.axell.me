@@ -1,6 +1,6 @@
 {
     "Version" : "v1",
-    "PluginImplementation" : "rayserve",
+    "PluginImplementation" : "raystatus",
     "Pipeline" : [
       {
         "Tool" : "go",
